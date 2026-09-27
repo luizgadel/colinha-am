@@ -117,6 +117,24 @@ function loadFotos() {
   return fotos;
 }
 
+function loadFotosTse() {
+  const fotos = new Map();
+  const zip = path.join(fotoDir, "foto_cand2026_AM_div.zip");
+  const publicDir = path.join(root, "web", "public", "fotos");
+  if (fs.existsSync(zip)) {
+    fs.mkdirSync(publicDir, { recursive: true });
+    execFileSync("tar", ["-xf", zip, "-C", publicDir]);
+    const leiame = path.join(publicDir, "leiame.pdf");
+    if (fs.existsSync(leiame)) fs.unlinkSync(leiame);
+  }
+  if (!fs.existsSync(publicDir)) return fotos;
+  for (const name of fs.readdirSync(publicDir)) {
+    const match = name.match(/^FAM(\d+)_div\.jpg$/i);
+    if (match) fotos.set(match[1], `/fotos/${name}`);
+  }
+  return fotos;
+}
+
 function fotoOriginal(url) {
   return String(url);
 }
@@ -160,6 +178,7 @@ const redes = groupBySq([
   ...readCsv(path.join(csvDir, "rede_social_candidato_2026_BR.csv")),
 ]);
 const fotos = loadFotos();
+const fotosTse = loadFotosTse();
 const propostas = propostasPorCandidato();
 
 const candidatos = [];
@@ -206,7 +225,7 @@ for (const row of [...am, ...br]) {
     limiteGastos: money(extra.VR_DESPESA_MAX_CAMPANHA),
     prestouContas: clean(extra.ST_PREST_CONTAS) || "N",
     uf: clean(row.SG_UF),
-    foto: fotos.get(`${cargo.id}:${numero}`) ?? "",
+    foto: fotos.get(`${cargo.id}:${numero}`) || fotosTse.get(row.SQ_CANDIDATO) || "",
     bens: itens,
     redes: links,
     propostas: propostas.get(row.SQ_CANDIDATO) ?? [],
@@ -217,7 +236,7 @@ candidatos.sort((a, b) => a.nomeUrna.localeCompare(b.nomeUrna, "pt"));
 
 const payload = {
   geradoEm: am[0]?.DT_GERACAO ?? "",
-  fonte: "TSE, conjunto Candidatos 2026 (espelho p√∫blico). Propostas de governo: pacote AM do TSE.",
+  fonte: "TSE, conjunto Candidatos 2026 (espelho pùblico). Propostas de governo: pacote AM do TSE.",
   candidatos,
 };
 

@@ -13,3 +13,5 @@ scripts/inspect-comp.mjs
 scripts/inspect-csv.mjs
 scripts/list-github-files.mjs
 scripts/list-resources.mjs
+
+dados/tse/fotos/*.zip
