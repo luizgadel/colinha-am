@@ -8,7 +8,7 @@ import { SLOTS, type Slot } from "../slots";
 import type { SlotId } from "../types";
 
 export function HomePage() {
-  const { escolhas, definir } = useColinha();
+  const { escolhas, comentarios, definir, comentar } = useColinha();
   const { geradoEm } = useDados();
   const location = useLocation();
   const [aberto, setAberto] = useState<SlotId | null>(null);
@@ -40,12 +40,14 @@ export function HomePage() {
             key={slot.id}
             slot={slot}
             candidato={escolhas[slot.id]}
+            comentario={comentarios[slot.id]}
             bloqueado={outroSenador(slot)}
             onEscolher={(candidato) => {
               definir(slot.id, candidato);
               setAberto(null);
             }}
             onLimpar={() => definir(slot.id, null)}
+            onComentar={(texto) => comentar(slot.id, texto)}
             onBuscar={() => setAberto(slot.id)}
           />
         ))}

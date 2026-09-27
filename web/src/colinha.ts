@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { buscarPorNumero, useDados } from "./data";
-import { SLOTS } from "./slots";
+import { SLOTS, paramComentario } from "./slots";
 import type { Candidato, SlotId } from "./types";
 
 export function useColinha() {
@@ -19,12 +19,31 @@ export function useColinha() {
     return mapa;
   }, [indice, params]);
 
+  const comentarios = useMemo(() => {
+    const mapa = {} as Record<SlotId, string>;
+    for (const slot of SLOTS) {
+      mapa[slot.id] = (params.get(paramComentario(slot.id)) ?? "").slice(0, 200);
+    }
+    return mapa;
+  }, [params]);
+
   function definir(slot: SlotId, candidato: Candidato | null) {
     const proximo = new URLSearchParams(params);
-    if (!candidato) proximo.delete(slot);
-    else proximo.set(slot, candidato.numero);
+    if (!candidato) {
+      proximo.delete(slot);
+      proximo.delete(paramComentario(slot));
+    } else proximo.set(slot, candidato.numero);
     setParams(proximo);
   }
 
-  return { escolhas, definir, params };
+  function comentar(slot: SlotId, texto: string) {
+    const proximo = new URLSearchParams(params);
+    const limitado = texto.slice(0, 200);
+    const chave = paramComentario(slot);
+    if (!limitado) proximo.delete(chave);
+    else proximo.set(chave, limitado);
+    setParams(proximo, { replace: true });
+  }
+
+  return { escolhas, comentarios, definir, comentar, params };
 }

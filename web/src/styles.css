@@ -142,6 +142,43 @@ button, input, a { font: inherit; }
   font-size: 13px;
 }
 
+.comentario {
+  display: block;
+  margin-top: 12px;
+}
+
+.comentario span {
+  display: block;
+  margin-bottom: 6px;
+  color: #8b919a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.comentario textarea {
+  width: 100%;
+  min-height: 64px;
+  resize: vertical;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #1c1c1c;
+  background: #fafafa;
+}
+
+.comentario textarea:focus {
+  outline: 2px solid #1c9a4a;
+  border-color: transparent;
+}
+
+.comentario-papel {
+  margin: 10px 0 0;
+  color: #1c1c1c;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
 .vazio { flex-wrap: wrap; }
 .vazio .buscar { white-space: nowrap; }
 

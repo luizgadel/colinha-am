@@ -9,16 +9,20 @@ import { Digitos } from "./Digitos";
 export function CartaoVoto({
   slot,
   candidato,
+  comentario,
   bloqueado,
   onEscolher,
   onLimpar,
+  onComentar,
   onBuscar,
 }: {
   slot: Slot;
   candidato?: Candidato;
+  comentario: string;
   bloqueado?: Candidato;
   onEscolher: (candidato: Candidato) => void;
   onLimpar: () => void;
+  onComentar: (texto: string) => void;
   onBuscar: () => void;
 }) {
   const indice = useDados();
@@ -70,18 +74,30 @@ export function CartaoVoto({
           </button>
         ) : null}
       </header>
-      {candidato ? (
-        <Link
-          className="escolha"
-          to={{ pathname: `/candidato/${candidato.sq}`, search: window.location.search }}
-        >
-          <Digitos total={slot.digits} valor={candidato.numero} preenchido />
-          <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />
-          <span className="identidade">
-            <strong>{candidato.nomeUrna}</strong>
-            <span>{candidato.sigla}</span>
-          </span>
-        </Link>
+            {candidato ? (
+        <div className="preenchido">
+          <Link
+            className="escolha"
+            to={{ pathname: `/candidato/${candidato.sq}`, search: window.location.search }}
+          >
+            <Digitos total={slot.digits} valor={candidato.numero} preenchido />
+            <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />
+            <span className="identidade">
+              <strong>{candidato.nomeUrna}</strong>
+              <span>{candidato.sigla}</span>
+            </span>
+          </Link>
+          <label className="comentario">
+            <span>Comentário</span>
+            <textarea
+              maxLength={200}
+              rows={3}
+              value={comentario}
+              placeholder="Por que essa escolha?"
+              onChange={(evento) => onComentar(evento.target.value)}
+            />
+          </label>
+        </div>
       ) : (
         <div className="vazio">
           <button

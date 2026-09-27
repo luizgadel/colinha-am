@@ -71,6 +71,10 @@ export function slotLabel(slot: Slot, candidato?: Candidato) {
   return candidato.genero === "FEMININO" ? slot.feminino : slot.masculino;
 }
 
+export function paramComentario(id: SlotId) {
+  return `c${id}`;
+}
+
 export function cargoLabel(candidato: Candidato) {
   const slot = SLOTS.find((item) => item.cargo === candidato.cargo);
   if (!slot || slot.id === "s1" || slot.id === "s2") {

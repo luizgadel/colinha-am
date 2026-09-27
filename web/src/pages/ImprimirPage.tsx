@@ -4,7 +4,7 @@ import { useColinha } from "../colinha";
 import { SLOTS, slotLabel } from "../slots";
 
 export function ImprimirPage() {
-  const { escolhas } = useColinha();
+  const { escolhas, comentarios } = useColinha();
   const location = useLocation();
 
   return (
@@ -41,6 +41,9 @@ export function ImprimirPage() {
                   <span>{candidato?.sigla ?? ""}</span>
                 </span>
               </div>
+              {candidato && comentarios[slot.id] ? (
+                <p className="comentario-papel">{comentarios[slot.id]}</p>
+              ) : null}
             </article>
           );
         })}
