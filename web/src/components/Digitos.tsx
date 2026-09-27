@@ -22,7 +22,8 @@ export function Digitos({
     <span className="digitos" aria-hidden={rotulo ? undefined : true}>
       {caracteres.map((caractere, indice) => {
         const vazio = caractere === " ";
-        const ativo = cursor === indice && vazio;
+        const ativo = cursor === indice;
+        const numpad = /^Numpad(\d)$/;
         return (
           <span
             key={indice}
@@ -30,6 +31,7 @@ export function Digitos({
               preenchido || !vazio ? "digito digito-cheio" : "digito"
             }
           >
+            {vazio ? "" : caractere}
             {ativo ? (
               <input
                 ref={entrada}
@@ -39,17 +41,21 @@ export function Digitos({
                 value=""
                 onChange={() => {}}
                 onKeyDown={(evento) => {
-                  if (evento.key === "Backspace" || /^\d$/.test(evento.key)) {
-                    evento.preventDefault();
-                    onTecla?.(evento.key);
-                  }
+                  const peloCodigo = numpad.exec(evento.code);
+                  const tecla =
+                    evento.key === "Backspace"
+                      ? "Backspace"
+                      : /^\d$/.test(evento.key)
+                        ? evento.key
+                        : peloCodigo
+                          ? peloCodigo[1]
+                          : "";
+                  if (!tecla) return;
+                  evento.preventDefault();
+                  onTecla?.(tecla);
                 }}
               />
-            ) : vazio ? (
-              ""
-            ) : (
-              caractere
-            )}
+            ) : null}
           </span>
         );
       })}

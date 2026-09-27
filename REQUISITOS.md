@@ -199,6 +199,17 @@ Com o ponteiro sobre **“Busque pelo nome”**, o texto fica sublinhado, como *
 - [x] “Busque pelo nome” ganha sublinhado no hover.
 - [x] Fora do hover, o sublinhado some.
 
+### 25. Editar o número sem abrir a ficha
+
+**Status:** implementado
+
+Selecionar as caixas de número de um voto preenchido não abre a página do candidato. O foco vai para o último dígito, e Backspace apaga a partir dele. Se a entrada estiver vazia, as teclas do teclado numérico preenchem as caixas.
+
+- [x] Clicar nas caixas de um voto preenchido não navega para a ficha.
+- [x] O foco fica no último dígito.
+- [x] Backspace apaga dígitos a partir do último.
+- [x] Com a entrada vazia, o teclado numérico preenche o número.
+
 ---
 
 ## Fora desta imagem (backlog)

@@ -70,6 +70,13 @@ export function CartaoVoto({
   }, [bloqueado, candidato, indice, onEscolher, rascunho, slot.cargo, slot.digits]);
 
   function aoDigitar(tecla: string) {
+    if (tecla === "Backspace" && candidato) {
+      repetirFoco.current = true;
+      setRascunho(candidato.numero.slice(0, -1));
+      setErro("");
+      onLimpar();
+      return;
+    }
     if (candidato) return;
     repetirFoco.current = true;
     if (tecla === "Backspace") {
@@ -94,19 +101,41 @@ export function CartaoVoto({
       </header>
             {candidato ? (
         <div className="preenchido">
-          <Link
-            className="escolha"
-            href={`/candidato/${candidato.sq}${suffix}`}
-          >
+          <div className="escolha">
             <span className="escolha-urna">
-              <Digitos total={slot.digits} valor={candidato.numero} preenchido />
-              <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />
+              <div
+                className="caixas"
+                onMouseDown={(evento) => {
+                  if (evento.target === caixa.current) return;
+                  evento.preventDefault();
+                  caixa.current?.focus();
+                }}
+              >
+                <Digitos
+                  total={slot.digits}
+                  valor={candidato.numero}
+                  preenchido
+                  cursor={candidato.numero.length - 1}
+                  rotulo={`Digite o número de ${slot.vazio.toLowerCase()}`}
+                  entrada={caixa}
+                  onTecla={aoDigitar}
+                />
+              </div>
+              <Link
+                className="escolha-link"
+                href={`/candidato/${candidato.sq}${suffix}`}
+              >
+                <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />
+              </Link>
             </span>
-            <span className="identidade">
+            <Link
+              className="escolha-link identidade"
+              href={`/candidato/${candidato.sq}${suffix}`}
+            >
               <strong>{candidato.nomeUrna}</strong>
               <span>{candidato.sigla}</span>
-            </span>
-          </Link>
+            </Link>
+          </div>
           {comentario && !comentarioAberto ? (
             <p className="comentario-salvo">{comentario}</p>
           ) : null}
