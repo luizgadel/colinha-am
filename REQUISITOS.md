@@ -135,6 +135,70 @@ O campo de comentário aceita no máximo 210 caracteres. O que passar disso não
 - [x] O campo recusa o que passar de 210 caracteres.
 - [x] A URL guarda no máximo esses 210 caracteres.
 
+### 18. Foco da entrada de número
+
+**Status:** implementado
+
+No lugar do cursor de texto da feature 16, o foco da entrada de número aparece como uma sombra amarela ao redor das caixas. O cursor de texto deixa de ser o indicador.
+
+- [x] Ao clicar na entrada de número, as caixas ganham uma sombra amarela ao redor.
+- [x] O cursor de texto não aparece mais nessas caixas.
+
+### 19. Hover de “limpar”
+
+**Status:** a implementar
+
+Com o ponteiro sobre **“limpar ×”**, a cor do texto passa a ser vermelha.
+
+- [ ] No hover, o texto de “limpar ×” fica vermelho.
+- [ ] Fora do hover, a cor volta ao que era.
+
+### 20. Hover de “comentar” e “fechar”
+
+**Status:** a implementar
+
+Com o ponteiro sobre **“comentar”** ou **“fechar”**, o texto fica sublinhado.
+
+- [ ] “comentar” ganha sublinhado no hover.
+- [ ] “fechar” ganha sublinhado no hover.
+
+### 21. Nome e partido descem quando não cabem
+
+**Status:** a implementar
+
+No card preenchido, nome e partido ficam à direita do número e da foto. Se esse bloco não couber na largura do card, ele desce para baixo da seção que exibe o número e a foto.
+
+- [ ] Quando há espaço, nome e partido continuam à direita do número e da foto.
+- [ ] Quando não há espaço, nome e partido passam para a linha de baixo.
+
+### 22. Foto alinhada ao topo
+
+**Status:** a implementar
+
+A foto do candidato fica centralizada na parte de cima, no card e na ficha. O rosto costuma estar mais alto na imagem, e o recorte precisa mostrar essa região.
+
+- [ ] No card, a foto mostra a parte de cima da imagem, centralizada na horizontal.
+- [ ] Na ficha, a foto mostra a parte de cima da imagem, centralizada na horizontal.
+
+### 23. Borda verde na foto
+
+**Status:** a implementar
+
+A foto do candidato usa a mesma borda verde das caixas de número preenchidas. Vale no card, na ficha e na busca por nome.
+
+- [ ] No card, a foto tem a borda verde das caixas de número.
+- [ ] Na ficha, a foto tem a mesma borda.
+- [ ] Na busca por nome, a foto tem a mesma borda.
+
+### 24. Hover de “Busque pelo nome”
+
+**Status:** a implementar
+
+Com o ponteiro sobre **“Busque pelo nome”**, o texto fica sublinhado, como **“comentar”** e **“fechar”** na feature 20.
+
+- [ ] “Busque pelo nome” ganha sublinhado no hover.
+- [ ] Fora do hover, o sublinhado some.
+
 ---
 
 ## Fora desta imagem (backlog)

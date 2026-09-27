@@ -102,32 +102,6 @@ button, input, a { font: inherit; }
 .digito-cheio { border-color: #1c9a4a; }
 
 
-.digito:focus-within {
-  position: relative;
-}
-
-.digito:focus-within::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 2px;
-  height: 26px;
-  transform: translate(-50%, -50%);
-  background: #111;
-  border-radius: 1px;
-  pointer-events: none;
-  animation: cursor-texto 1s steps(1) infinite;
-}
-
-@keyframes cursor-texto {
-  50% { opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .digito:focus-within::after { animation: none; }
-}
-
 .cursor-caixa {
   width: 2px;
   height: 28px;
@@ -136,21 +110,22 @@ button, input, a { font: inherit; }
   margin: 0;
   background: transparent;
   color: transparent;
-  caret-color: #111;
+  caret-color: transparent;
   font-size: 26px;
   line-height: 28px;
   outline: none;
 }
 
-
 .caixas {
   border: 0;
   background: transparent;
   padding: 0;
-  cursor: text;
+  border-radius: 14px;
 }
 
-.caixas:focus-visible { outline: 2px solid #1c9a4a; outline-offset: 4px; border-radius: 14px; }
+.caixas:focus-within {
+  box-shadow: 0 0 0 4px #ffe14a, 0 0 16px 4px rgba(255, 196, 0, 0.7);
+}
 
 .buscar {
   border: 0;
