@@ -80,8 +80,15 @@ export function CartaoVoto({
     repetirFoco.current = true;
     if (tecla === "Backspace") {
       const base = emCandidato && candidato ? candidato.numero : rascunho;
+      if (!base) {
+        setPosicao(0);
+        setErro("");
+        return;
+      }
       const restante = base.slice(0, -1);
-      setPosicao(Math.max(0, restante.length - 1));
+      const cursor = emCandidato ? base.length - 1 : (posicao ?? base.length);
+      const naCaixaVazia = cursor >= base.length;
+      setPosicao(naCaixaVazia ? restante.length : Math.max(0, restante.length - 1));
       setRascunho(restante);
       setErro("");
       if (emCandidato) onLimpar();

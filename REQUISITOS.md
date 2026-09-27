@@ -249,12 +249,12 @@ Com um candidato já definido, apagar um dígito não pode perder o foco da caix
 
 ### 30. Foco na caixa recém-apagada
 
-**Status:** a implementar
+**Status:** implementado
 
 Com o foco numa caixa vazia e pelo menos um número já digitado na mesma linha, apagar leva o foco para a caixa anterior que acabou de ser apagada.
 
-- [ ] Backspace com o foco numa caixa vazia, havendo dígito na linha, move o foco para a caixa do dígito apagado.
-- [ ] Sem caixa anterior, o foco permanece na primeira caixa.
+- [x] Backspace com o foco numa caixa vazia, havendo dígito na linha, move o foco para a caixa do dígito apagado.
+- [x] Sem caixa anterior, o foco permanece na primeira caixa.
 
 ### 31. Foco na próxima caixa ao digitar
 
