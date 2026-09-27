@@ -95,7 +95,7 @@ Depois que um dos seis votos está preenchido, o card ganha um campo de texto li
 - [x] Um comentário por slot (`df`, `de`, `s1`, `s2`, `gov`, `pr`), independente dos outros.
 - [x] **“limpar”** apaga o candidato e o comentário daquele voto.
 - [x] O texto vai na mesma URL da colinha (feature 10), em parâmetros próprios: `cdf`, `cde`, `cs1`, `cs2`, `cgov`, `cpr`. Comentário vazio omite o parâmetro.
-- [x] Cada texto cabe num parágrafo curto, para o link continuar abrindo no WhatsApp. O teto de 200 caracteres passa a ser 210 na feature 17.
+- [x] Cada texto cabe num parágrafo curto, para o link continuar abrindo no WhatsApp. O teto é de 210 caracteres.
 - [x] A versão papel (feature 11) imprime o comentário embaixo do candidato daquele cargo.
 
 ### 14. Comentário sob demanda
@@ -128,9 +128,12 @@ Ao clicar numa caixa de número ainda vazia, o cursor de texto fica visível nes
 
 ### 17. Limite do comentário em 210 caracteres
 
-**Status:** a implementar
+**Status:** implementado
 
 O campo de comentário aceita no máximo 210 caracteres. O que passar disso não entra no campo nem na URL. Vale no lugar do teto de 200 da feature 13.
+
+- [x] O campo recusa o que passar de 210 caracteres.
+- [x] A URL guarda no máximo esses 210 caracteres.
 
 ---
 

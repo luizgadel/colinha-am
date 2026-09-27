@@ -119,7 +119,7 @@ export function CartaoVoto({
             <label className="comentario">
               <span>Comentário</span>
               <textarea
-                maxLength={200}
+                maxLength={210}
                 rows={3}
                 value={comentario}
                 placeholder="Por que essa escolha?"

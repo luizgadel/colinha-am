@@ -26,7 +26,7 @@ export function useColinha() {
   const comentarios = useMemo(() => {
     const mapa = {} as Record<SlotId, string>;
     for (const slot of SLOTS) {
-      mapa[slot.id] = (params.get(paramComentario(slot.id)) ?? "").slice(0, 200);
+      mapa[slot.id] = (params.get(paramComentario(slot.id)) ?? "").slice(0, 210);
     }
     return mapa;
   }, [params]);
@@ -52,7 +52,7 @@ export function useColinha() {
 
   function comentar(slot: SlotId, texto: string) {
     const proximo = new URLSearchParams(params);
-    const limitado = texto.slice(0, 200);
+    const limitado = texto.slice(0, 210);
     const chave = paramComentario(slot);
     if (!limitado) proximo.delete(chave);
     else proximo.set(chave, limitado);
