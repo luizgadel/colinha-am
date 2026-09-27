@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
 import { BuscaNome } from "../components/BuscaNome";
 import { CartaoVoto } from "../components/CartaoVoto";
 import { useColinha } from "../colinha";
@@ -8,9 +10,8 @@ import { SLOTS, type Slot } from "../slots";
 import type { SlotId } from "../types";
 
 export function HomePage() {
-  const { escolhas, comentarios, definir, comentar } = useColinha();
+  const { escolhas, comentarios, definir, comentar, suffix } = useColinha();
   const { geradoEm } = useDados();
-  const location = useLocation();
   const [aberto, setAberto] = useState<SlotId | null>(null);
   const [copiado, setCopiado] = useState(false);
   const slotAberto = SLOTS.find((slot) => slot.id === aberto);
@@ -22,7 +23,7 @@ export function HomePage() {
   }
 
   async function copiar() {
-    const url = `${window.location.origin}/${location.search}`;
+    const url = window.location.href;
     await navigator.clipboard.writeText(url);
     setCopiado(true);
     window.setTimeout(() => setCopiado(false), 2000);
@@ -56,7 +57,7 @@ export function HomePage() {
         <button type="button" onClick={() => void copiar()}>
           {copiado ? "Link copiado" : "Copiar link"}
         </button>
-        <Link to={{ pathname: "/imprimir", search: location.search }}>
+        <Link href={`/imprimir${suffix}`}>
           Imprimir
         </Link>
       </div>

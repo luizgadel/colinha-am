@@ -1,16 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Digitos } from "../components/Digitos";
 import { useColinha } from "../colinha";
 import { SLOTS, slotLabel } from "../slots";
 
 export function ImprimirPage() {
-  const { escolhas, comentarios } = useColinha();
-  const location = useLocation();
+  const { escolhas, comentarios, suffix } = useColinha();
 
   return (
     <main className="pagina pagina-papel">
       <div className="acoes no-print">
-        <Link to={{ pathname: "/", search: location.search }}>Voltar</Link>
+        <Link href={`/${suffix}`}>Voltar</Link>
         <button type="button" onClick={() => window.print()}>
           Imprimir
         </button>

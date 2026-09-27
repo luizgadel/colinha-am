@@ -1,5 +1,8 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { buscarPorNumero, useDados } from "../data";
 import { slotLabel, type Slot } from "../slots";
 import type { Candidato } from "../types";
@@ -26,6 +29,8 @@ export function CartaoVoto({
   onBuscar: () => void;
 }) {
   const indice = useDados();
+  const consulta = useSearchParams().toString();
+  const suffix = consulta ? `?${consulta}` : "";
   const [rascunho, setRascunho] = useState("");
   const [erro, setErro] = useState("");
   const caixa = useRef<HTMLButtonElement>(null);
@@ -78,7 +83,7 @@ export function CartaoVoto({
         <div className="preenchido">
           <Link
             className="escolha"
-            to={{ pathname: `/candidato/${candidato.sq}`, search: window.location.search }}
+            href={`/candidato/${candidato.sq}${suffix}`}
           >
             <Digitos total={slot.digits} valor={candidato.numero} preenchido />
             <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />

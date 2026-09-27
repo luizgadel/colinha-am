@@ -1,4 +1,7 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useParams, useSearchParams } from "next/navigation";
 import { Avatar } from "../components/Avatar";
 import { Digitos } from "../components/Digitos";
 import { useDados } from "../data";
@@ -6,16 +9,17 @@ import { brl, hrefRede } from "../format";
 import { SLOTS, cargoLabel } from "../slots";
 
 export function CandidatoPage() {
-  const { sq = "" } = useParams();
+  const { sq = "" } = useParams<{ sq: string }>();
   const { porSq, geradoEm } = useDados();
-  const location = useLocation();
+  const consulta = useSearchParams().toString();
+  const suffix = consulta ? `?${consulta}` : "";
   const candidato = porSq.get(sq);
 
   if (!candidato) {
     return (
       <main className="pagina">
         <p className="aviso">Candidatura não encontrada nesta base.</p>
-        <Link to={{ pathname: "/", search: location.search }}>Voltar à colinha</Link>
+        <Link href={`/${suffix}`}>Voltar à colinha</Link>
       </main>
     );
   }
@@ -26,7 +30,7 @@ export function CandidatoPage() {
 
   return (
     <main className="pagina ficha">
-      <Link className="voltar" to={{ pathname: "/", search: location.search }}>
+      <Link className="voltar" href={`/${suffix}`}>
         Colinha
       </Link>
       <p className="olho">{cargoLabel(candidato)}</p>

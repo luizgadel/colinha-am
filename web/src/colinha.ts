@@ -1,12 +1,16 @@
+"use client";
+
 import { useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buscarPorNumero, useDados } from "./data";
 import { SLOTS, paramComentario } from "./slots";
 import type { Candidato, SlotId } from "./types";
 
 export function useColinha() {
   const indice = useDados();
-  const [params, setParams] = useSearchParams();
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const escolhas = useMemo(() => {
     const mapa = {} as Record<SlotId, Candidato | undefined>;
@@ -27,13 +31,23 @@ export function useColinha() {
     return mapa;
   }, [params]);
 
+  const consulta = params.toString();
+  const suffix = consulta ? `?${consulta}` : "";
+
+  function escrever(proximo: URLSearchParams, modo: "push" | "replace") {
+    const texto = proximo.toString();
+    const href = texto ? `${pathname}?${texto}` : pathname;
+    if (modo === "replace") router.replace(href);
+    else router.push(href);
+  }
+
   function definir(slot: SlotId, candidato: Candidato | null) {
     const proximo = new URLSearchParams(params);
     if (!candidato) {
       proximo.delete(slot);
       proximo.delete(paramComentario(slot));
     } else proximo.set(slot, candidato.numero);
-    setParams(proximo);
+    escrever(proximo, "push");
   }
 
   function comentar(slot: SlotId, texto: string) {
@@ -42,8 +56,8 @@ export function useColinha() {
     const chave = paramComentario(slot);
     if (!limitado) proximo.delete(chave);
     else proximo.set(chave, limitado);
-    setParams(proximo, { replace: true });
+    escrever(proximo, "replace");
   }
 
-  return { escolhas, comentarios, definir, comentar, params };
+  return { escolhas, comentarios, definir, comentar, suffix };
 }
