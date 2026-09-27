@@ -146,12 +146,12 @@ No lugar do cursor de texto da feature 16, o foco da entrada de número aparece 
 
 ### 19. Hover de “limpar”
 
-**Status:** a implementar
+**Status:** implementado
 
 Com o ponteiro sobre **“limpar ×”**, a cor do texto passa a ser vermelha.
 
-- [ ] No hover, o texto de “limpar ×” fica vermelho.
-- [ ] Fora do hover, a cor volta ao que era.
+- [x] No hover, o texto de “limpar ×” fica vermelho.
+- [x] Fora do hover, a cor volta ao que era.
 
 ### 20. Hover de “comentar” e “fechar”
 

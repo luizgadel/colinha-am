@@ -69,6 +69,8 @@ button, input, a { font: inherit; }
   padding: 0;
 }
 
+.limpar:hover { color: #d1242f; }
+
 .escolha, .vazio {
   display: flex;
   align-items: center;
