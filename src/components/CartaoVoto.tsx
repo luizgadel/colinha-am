@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { buscarPorNumero, useDados } from "../data";
@@ -37,23 +37,27 @@ export function CartaoVoto({
   const [comentarioAberto, setComentarioAberto] = useState(false);
   const caixa = useRef<HTMLInputElement>(null);
   const repetirFoco = useRef(false);
-
-  useEffect(() => {
+  const chaveCandidato = candidato?.sq ?? "";
+  const [visto, setVisto] = useState(chaveCandidato);
+  if (chaveCandidato !== visto) {
+    setVisto(chaveCandidato);
     if (candidato) {
       setRascunho("");
       setErro("");
       setPosicao(null);
     }
-  }, [candidato]);
+  }
 
   useEffect(() => {
     if (!candidato) setComentarioAberto(false);
   }, [candidato]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!repetirFoco.current) return;
+    const alvo = caixa.current;
+    if (!alvo) return;
+    alvo.focus();
     repetirFoco.current = false;
-    caixa.current?.focus();
   });
 
   useEffect(() => {
@@ -72,34 +76,37 @@ export function CartaoVoto({
   }, [bloqueado, candidato, indice, onEscolher, rascunho, slot.cargo, slot.digits]);
 
   function aoDigitar(tecla: string) {
+    const emCandidato = Boolean(candidato) && posicao === null && rascunho === "";
     repetirFoco.current = true;
     if (tecla === "Backspace") {
-      const base = candidato ? candidato.numero : rascunho;
+      const base = emCandidato && candidato ? candidato.numero : rascunho;
       const restante = base.slice(0, -1);
       setPosicao(Math.max(0, restante.length - 1));
       setRascunho(restante);
       setErro("");
-      if (candidato) onLimpar();
+      if (emCandidato) onLimpar();
       return;
     }
-    if (candidato) return;
+    if (emCandidato) return;
     if (/^\d$/.test(tecla) && rascunho.length < slot.digits) {
       setPosicao(null);
       setRascunho((atual) => atual + tecla);
     }
   }
 
+  const editando = !candidato || posicao !== null || rascunho !== "";
+
   return (
     <article className="cartao">
       <header className="cartao-topo">
         <span>{slotLabel(slot, candidato)}</span>
-        {candidato ? (
+        {candidato && !editando ? (
           <button type="button" className="limpar" onClick={onLimpar}>
             limpar ×
           </button>
         ) : null}
       </header>
-            {candidato ? (
+            {candidato && !editando ? (
         <div className="preenchido">
           <div className="escolha">
             <span className="escolha-urna">

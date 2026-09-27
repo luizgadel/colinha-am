@@ -238,6 +238,33 @@ Apagar o número de uma caixa leva o foco para a caixa anterior, se ela existir.
 - [x] Apagar um dígito que não está na primeira caixa move o foco para a caixa anterior.
 - [x] Apagar o dígito da primeira caixa, ou apagar com ela vazia, mantém o foco nessa caixa.
 
+### 29. Manter o foco ao apagar um candidato
+
+**Status:** implementado
+
+Com um candidato já definido, apagar um dígito não pode perder o foco da caixa. O foco continua nas caixas do número.
+
+- [x] Apagar um dígito de um voto já preenchido mantém o foco em uma caixa do número.
+- [x] Se houver caixa anterior, o foco vai para ela; na primeira, permanece nela.
+
+### 30. Foco na caixa recém-apagada
+
+**Status:** a implementar
+
+Com o foco numa caixa vazia e pelo menos um número já digitado na mesma linha, apagar leva o foco para a caixa anterior que acabou de ser apagada.
+
+- [ ] Backspace com o foco numa caixa vazia, havendo dígito na linha, move o foco para a caixa do dígito apagado.
+- [ ] Sem caixa anterior, o foco permanece na primeira caixa.
+
+### 31. Foco na próxima caixa ao digitar
+
+**Status:** a implementar
+
+Ao digitar um número, o foco vai para a próxima caixa. Na última caixa, o foco permanece nela.
+
+- [ ] Digitar um dígito que não é o último move o foco para a caixa seguinte.
+- [ ] Digitar o dígito da última caixa mantém o foco nessa caixa.
+
 ---
 
 ## Fora desta imagem (backlog)
