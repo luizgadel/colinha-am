@@ -15,3 +15,6 @@ scripts/list-github-files.mjs
 scripts/list-resources.mjs
 
 dados/tse/fotos/*.zip
+
+.next/
+out/

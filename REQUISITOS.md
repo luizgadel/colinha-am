@@ -219,6 +219,16 @@ Ao selecionar o campo de número, a sombra amarela fica na caixa que vai receber
 - [x] Com o campo de número focado, só a caixa a preencher tem a sombra amarela.
 - [x] As outras caixas do mesmo número ficam sem essa sombra.
 
+### 27. App na raiz do repositório
+
+**Status:** implementado
+
+O `package.json` e o código do Next ficam na raiz do repositório. O front não fica numa pasta `web`.
+
+- [x] `package.json` está na raiz.
+- [x] `src/`, `public/` e a configuração do Next estão na raiz.
+- [x] Não há pasta `web` com o front.
+
 ---
 
 ## Fora desta imagem (backlog)
@@ -238,11 +248,11 @@ Não aparecem na captura; ficam para depois, se quisermos ir além da colinha:
 
 As features 1–13 permanecem. A troca é só da ferramenta que serve e empacota o React: Next.js no lugar de Vite e `react-router`.
 
-Ficam como estão o script `scripts/build-candidatos.mjs`, o `web/public/data/candidatos.json` e os PDFs em `web/public/propostas`. Não há backend novo.
+Ficam como estão o script `scripts/build-candidatos.mjs`, o `public/data/candidatos.json` e os PDFs em `public/propostas`. Não há backend novo.
 
 ### Forma alvo
 
-- [x] Next.js com App Router e TypeScript, ainda dentro de `web/`. O Next trata `src` como raiz, então o App Router ficou em `web/src/app`. As telas saíram de `src/pages` (pasta reservada pelo Next) e foram para `web/src/telas`.
+- [x] Next.js com App Router e TypeScript, na raiz do repositório. O Next trata `src` como raiz, então o App Router ficou em `src/app`. As telas saíram de `src/pages` (pasta reservada pelo Next) e foram para `src/telas`.
 - [x] `output: 'export'`, para o resultado continuar um site estático (GitHub Pages, Cloudflare Pages ou equivalente).
 - [x] Rotas: `src/app/page.tsx` (home), `src/app/candidato/[sq]/page.tsx`, `src/app/imprimir/page.tsx`.
 - [x] Cards, busca, dígitos, comentário e leitura da URL em componentes com `"use client"`.
@@ -251,7 +261,7 @@ Ficam como estão o script `scripts/build-candidatos.mjs`, o `web/public/data/ca
 
 ### Passos
 
-1. [x] Trocar dependências em `web/package.json`: sair `vite`, `@vitejs/plugin-react` e `react-router-dom`; entrar `next`.
+1. [x] Trocar dependências em `package.json`: sair `vite`, `@vitejs/plugin-react` e `react-router-dom`; entrar `next`.
 2. [x] Mover as páginas para o App Router e remover `main.tsx`, `index.html`, `vite.config.ts` e o `App.tsx` que montava o `BrowserRouter`.
 3. [x] Trocar `Link` e a leitura da query pelos equivalentes de `next/link` e `next/navigation`. Manter `df`, `de`, `s1`, `s2`, `gov`, `pr` e os parâmetros de comentário da feature 13.
 4. [x] Continuar carregando `/data/candidatos.json` no cliente, para a colinha funcionar no export estático.

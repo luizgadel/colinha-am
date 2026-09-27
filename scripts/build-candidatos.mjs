@@ -5,8 +5,8 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const csvDir = path.join(root, "dados", "tse", "csv");
 const fotoDir = path.join(root, "dados", "tse", "fotos");
-const outDir = path.join(root, "web", "public", "data");
-const propostaOut = path.join(root, "web", "public", "propostas");
+const outDir = path.join(root, "public", "data");
+const propostaOut = path.join(root, "public", "propostas");
 const propostaSrc = "C:/Users/Luiz/Downloads/proposta_governo_2026_AM (1)/AM";
 
 const CARGOS = {
@@ -120,7 +120,7 @@ function loadFotos() {
 function loadFotosTse() {
   const fotos = new Map();
   const zip = path.join(fotoDir, "foto_cand2026_AM_div.zip");
-  const publicDir = path.join(root, "web", "public", "fotos");
+  const publicDir = path.join(root, "public", "fotos");
   if (fs.existsSync(zip)) {
     fs.mkdirSync(publicDir, { recursive: true });
     execFileSync("tar", ["-xf", zip, "-C", publicDir]);
@@ -236,7 +236,7 @@ candidatos.sort((a, b) => a.nomeUrna.localeCompare(b.nomeUrna, "pt"));
 
 const payload = {
   geradoEm: am[0]?.DT_GERACAO ?? "",
-  fonte: "TSE, conjunto Candidatos 2026 (espelho pùblico). Propostas de governo: pacote AM do TSE.",
+  fonte: "TSE, conjunto Candidatos 2026 (espelho p?blico). Propostas de governo: pacote AM do TSE.",
   candidatos,
 };
 
