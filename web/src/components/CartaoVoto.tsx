@@ -33,6 +33,7 @@ export function CartaoVoto({
   const suffix = consulta ? `?${consulta}` : "";
   const [rascunho, setRascunho] = useState("");
   const [erro, setErro] = useState("");
+  const [comentarioAberto, setComentarioAberto] = useState(false);
   const caixa = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -40,6 +41,10 @@ export function CartaoVoto({
       setRascunho("");
       setErro("");
     }
+  }, [candidato]);
+
+  useEffect(() => {
+    if (!candidato) setComentarioAberto(false);
   }, [candidato]);
 
   useEffect(() => {
@@ -92,16 +97,28 @@ export function CartaoVoto({
               <span>{candidato.sigla}</span>
             </span>
           </Link>
-          <label className="comentario">
-            <span>Comentário</span>
-            <textarea
-              maxLength={200}
-              rows={3}
-              value={comentario}
-              placeholder="Por que essa escolha?"
-              onChange={(evento) => onComentar(evento.target.value)}
-            />
-          </label>
+          {comentario && !comentarioAberto ? (
+            <p className="comentario-salvo">{comentario}</p>
+          ) : null}
+          <button
+            type="button"
+            className="comentar"
+            onClick={() => setComentarioAberto((aberto) => !aberto)}
+          >
+            {comentarioAberto ? "fechar" : "comentar"}
+          </button>
+          {comentarioAberto ? (
+            <label className="comentario">
+              <span>Comentário</span>
+              <textarea
+                maxLength={200}
+                rows={3}
+                value={comentario}
+                placeholder="Por que essa escolha?"
+                onChange={(evento) => onComentar(evento.target.value)}
+              />
+            </label>
+          ) : null}
         </div>
       ) : (
         <div className="vazio">

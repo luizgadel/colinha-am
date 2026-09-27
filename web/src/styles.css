@@ -172,11 +172,23 @@ button, input, a { font: inherit; }
   border-color: transparent;
 }
 
-.comentario-papel {
+.comentario-papel,
+.comentario-salvo {
   margin: 10px 0 0;
   color: #1c1c1c;
   font-size: 14px;
   white-space: pre-wrap;
+}
+
+.comentar {
+  margin-top: 12px;
+  border: 0;
+  background: transparent;
+  color: #1c9a4a;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
 }
 
 .vazio { flex-wrap: wrap; }
