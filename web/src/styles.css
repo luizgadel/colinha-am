@@ -146,6 +146,8 @@ button, input, a { font: inherit; }
   padding: 0;
 }
 
+.buscar:hover { text-decoration: underline; }
+
 .identidade {
   display: flex;
   flex-direction: column;

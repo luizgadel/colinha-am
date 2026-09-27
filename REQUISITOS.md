@@ -192,12 +192,12 @@ A foto do candidato usa a mesma borda verde das caixas de número preenchidas. V
 
 ### 24. Hover de “Busque pelo nome”
 
-**Status:** a implementar
+**Status:** implementado
 
 Com o ponteiro sobre **“Busque pelo nome”**, o texto fica sublinhado, como **“comentar”** e **“fechar”** na feature 20.
 
-- [ ] “Busque pelo nome” ganha sublinhado no hover.
-- [ ] Fora do hover, o sublinhado some.
+- [x] “Busque pelo nome” ganha sublinhado no hover.
+- [x] Fora do hover, o sublinhado some.
 
 ---
 
