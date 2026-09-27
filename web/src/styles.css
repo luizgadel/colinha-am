@@ -101,6 +101,48 @@ button, input, a { font: inherit; }
 
 .digito-cheio { border-color: #1c9a4a; }
 
+
+.digito:focus-within {
+  position: relative;
+}
+
+.digito:focus-within::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  background: #111;
+  border-radius: 1px;
+  pointer-events: none;
+  animation: cursor-texto 1s steps(1) infinite;
+}
+
+@keyframes cursor-texto {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digito:focus-within::after { animation: none; }
+}
+
+.cursor-caixa {
+  width: 2px;
+  height: 28px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: #111;
+  font-size: 26px;
+  line-height: 28px;
+  outline: none;
+}
+
+
 .caixas {
   border: 0;
   background: transparent;

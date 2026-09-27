@@ -34,7 +34,8 @@ export function CartaoVoto({
   const [rascunho, setRascunho] = useState("");
   const [erro, setErro] = useState("");
   const [comentarioAberto, setComentarioAberto] = useState(false);
-  const caixa = useRef<HTMLButtonElement>(null);
+  const caixa = useRef<HTMLInputElement>(null);
+  const repetirFoco = useRef(false);
 
   useEffect(() => {
     if (candidato) {
@@ -46,6 +47,12 @@ export function CartaoVoto({
   useEffect(() => {
     if (!candidato) setComentarioAberto(false);
   }, [candidato]);
+
+  useEffect(() => {
+    if (!repetirFoco.current) return;
+    repetirFoco.current = false;
+    caixa.current?.focus();
+  });
 
   useEffect(() => {
     if (candidato || rascunho.length !== slot.digits) return;
@@ -64,6 +71,7 @@ export function CartaoVoto({
 
   function aoDigitar(tecla: string) {
     if (candidato) return;
+    repetirFoco.current = true;
     if (tecla === "Backspace") {
       setRascunho((atual) => atual.slice(0, -1));
       setErro("");
@@ -122,20 +130,24 @@ export function CartaoVoto({
         </div>
       ) : (
         <div className="vazio">
-          <button
-            ref={caixa}
-            type="button"
+          <div
             className="caixas"
-            aria-label={`Digite o número de ${slot.vazio.toLowerCase()}`}
-            onKeyDown={(evento) => {
-              if (evento.key === "Backspace" || /^\d$/.test(evento.key)) {
-                evento.preventDefault();
-                aoDigitar(evento.key);
-              }
+            onMouseDown={(evento) => {
+              if (evento.target === caixa.current) return;
+              evento.preventDefault();
+              caixa.current?.focus();
             }}
           >
-            <Digitos total={slot.digits} valor={rascunho} preenchido={false} />
-          </button>
+            <Digitos
+              total={slot.digits}
+              valor={rascunho}
+              preenchido={false}
+              cursor={rascunho.length}
+              rotulo={`Digite o número de ${slot.vazio.toLowerCase()}`}
+              entrada={caixa}
+              onTecla={aoDigitar}
+            />
+          </div>
           <button type="button" className="buscar" onClick={onBuscar}>
             Busque pelo nome
           </button>

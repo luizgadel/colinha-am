@@ -119,9 +119,12 @@ A foto de deputado federal, deputado estadual e senador precisa aparecer no card
 
 ### 16. Cursor na digitação do número
 
-**Status:** a implementar
+**Status:** implementado
 
 Ao clicar numa caixa de número ainda vazia, o cursor de texto fica visível nessa caixa, para indicar que a digitação vai acontecer ali.
+
+- [x] O clique na caixa vazia mostra o cursor de texto na caixa que vai receber o próximo dígito.
+- [x] Cada dígito digitado avança o cursor para a caixa vazia seguinte.
 
 ### 17. Limite do comentário em 210 caracteres
 
