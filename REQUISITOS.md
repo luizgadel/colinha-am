@@ -182,13 +182,13 @@ A foto do candidato fica centralizada na parte de cima, no card e na ficha. O ro
 
 ### 23. Borda verde na foto
 
-**Status:** a implementar
+**Status:** implementado
 
 A foto do candidato usa a mesma borda verde das caixas de número preenchidas. Vale no card, na ficha e na busca por nome.
 
-- [ ] No card, a foto tem a borda verde das caixas de número.
-- [ ] Na ficha, a foto tem a mesma borda.
-- [ ] Na busca por nome, a foto tem a mesma borda.
+- [x] No card, a foto tem a borda verde das caixas de número.
+- [x] Na ficha, a foto tem a mesma borda.
+- [x] Na busca por nome, a foto tem a mesma borda.
 
 ### 24. Hover de “Busque pelo nome”
 

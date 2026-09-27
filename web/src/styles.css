@@ -316,6 +316,8 @@ button, input, a { font: inherit; }
   width: 48px;
   height: 48px;
   border-radius: 50%;
+  border: 2px solid #1c9a4a;
+  box-sizing: border-box;
   object-fit: cover;
   object-position: center top;
   flex: none;
