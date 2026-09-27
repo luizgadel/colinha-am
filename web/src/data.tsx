@@ -29,7 +29,7 @@ export function ProvedorDados({ children }: { children: ReactNode }) {
         return resposta.json() as Promise<BaseCandidatos>;
       })
       .then(setBase)
-      .catch(() => setErro("N�o foi poss�vel carregar os dados do TSE."));
+      .catch(() => setErro("Não foi possível carregar os dados do TSE."));
   }, []);
 
   const indice = useMemo<Indice | null>(() => {
@@ -53,14 +53,14 @@ export function ProvedorDados({ children }: { children: ReactNode }) {
     return <p className="aviso">{erro}</p>;
   }
   if (!indice) {
-    return <p className="aviso">Carregando candidaturas�</p>;
+    return <p className="aviso">Carregando candidaturas…</p>;
   }
   return <Contexto.Provider value={indice}>{children}</Contexto.Provider>;
 }
 
 export function useDados() {
   const indice = useContext(Contexto);
-  if (!indice) throw new Error("Dados ainda n�o carregados");
+  if (!indice) throw new Error("Dados ainda não carregados");
   return indice;
 }
 
