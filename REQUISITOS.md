@@ -1,6 +1,6 @@
 # Requisitos — colinha de votos AM 2026
 
-Site de referência para montar e compartilhar a colinha da eleição de 2026 no Amazonas: o eleitor escolhe os candidatos, vê os números no formato da urna, anota um comentário em cada voto preenchido e manda o recado para a família.
+Site de referência para montar e compartilhar a colinha da eleição de 2026 no Amazonas: o eleitor escolhe os candidatos, vê os números no formato da urna, anota um comentário em cada voto preenchido e manda o recado para a família. O front é Next.js, exportado como site estático.
 
 Referência visual da home: captura de [minhacolinha.com.br](https://minhacolinha.com.br) (seis votos na ordem da urna).
 
@@ -113,27 +113,29 @@ Não aparecem na captura; ficam para depois, se quisermos ir além da colinha:
 
 ## Plano: reescrever o front em Next.js
 
-As features 1–13 permanecem. A troca é só da ferramenta que serve e empacota o React: Next.js no lugar de Vite e `react-router`. O app atual continua no Vite até este plano ser executado.
+**Status:** implementado
+
+As features 1–13 permanecem. A troca é só da ferramenta que serve e empacota o React: Next.js no lugar de Vite e `react-router`.
 
 Ficam como estão o script `scripts/build-candidatos.mjs`, o `web/public/data/candidatos.json` e os PDFs em `web/public/propostas`. Não há backend novo.
 
 ### Forma alvo
 
-- Next.js com App Router e TypeScript, ainda dentro de `web/`.
-- `output: 'export'`, para o resultado continuar um site estático (GitHub Pages, Cloudflare Pages ou equivalente).
-- Rotas: `app/page.tsx` (home), `app/candidato/[sq]/page.tsx`, `app/imprimir/page.tsx`.
-- Cards, busca, dígitos, comentário e leitura da URL em componentes com `"use client"`.
-- `public/` segue servindo `/data/candidatos.json` e `/propostas/*.pdf`.
-- Se a publicação for em subcaminho (`/colinha-am` no GitHub Pages), configurar `basePath`. Na raiz de um domínio, `basePath` fica vazio.
+- [x] Next.js com App Router e TypeScript, ainda dentro de `web/`. O Next trata `src` como raiz, então o App Router ficou em `web/src/app`. As telas saíram de `src/pages` (pasta reservada pelo Next) e foram para `web/src/telas`.
+- [x] `output: 'export'`, para o resultado continuar um site estático (GitHub Pages, Cloudflare Pages ou equivalente).
+- [x] Rotas: `src/app/page.tsx` (home), `src/app/candidato/[sq]/page.tsx`, `src/app/imprimir/page.tsx`.
+- [x] Cards, busca, dígitos, comentário e leitura da URL em componentes com `"use client"`.
+- [x] `public/` segue servindo `/data/candidatos.json` e `/propostas/*.pdf`.
+- [x] `basePath` vazio, porque o site está na raiz do domínio. Se a publicação for em subcaminho (`/colinha-am` no GitHub Pages), configurar `basePath`.
 
 ### Passos
 
-1. Trocar dependências em `web/package.json`: sair `vite`, `@vitejs/plugin-react` e `react-router-dom`; entrar `next`.
-2. Mover as páginas para `app/` e remover `main.tsx`, `index.html`, `vite.config.ts` e o `App.tsx` que hoje monta o `BrowserRouter`.
-3. Trocar `Link` e a leitura da query pelos equivalentes de `next/link` e `next/navigation`. Manter `df`, `de`, `s1`, `s2`, `gov`, `pr` e os parâmetros de comentário da feature 13.
-4. Continuar carregando `/data/candidatos.json` no cliente, para a colinha funcionar no export estático.
-5. Conferir no browser as features 1–13: seis cards, busca, senador repetido bloqueado, URL, impressão, PDF e comentário.
-6. Só então apontar `dev` e `build` para o Next e apagar a configuração do Vite.
+1. [x] Trocar dependências em `web/package.json`: sair `vite`, `@vitejs/plugin-react` e `react-router-dom`; entrar `next`.
+2. [x] Mover as páginas para o App Router e remover `main.tsx`, `index.html`, `vite.config.ts` e o `App.tsx` que montava o `BrowserRouter`.
+3. [x] Trocar `Link` e a leitura da query pelos equivalentes de `next/link` e `next/navigation`. Manter `df`, `de`, `s1`, `s2`, `gov`, `pr` e os parâmetros de comentário da feature 13.
+4. [x] Continuar carregando `/data/candidatos.json` no cliente, para a colinha funcionar no export estático.
+5. [x] Conferir no browser as features 1–13: seis cards, busca, senador repetido bloqueado, URL, impressão, PDF e comentário.
+6. [x] Apontar `dev` e `build` para o Next e apagar a configuração do Vite.
 
 ### Fora deste plano
 
