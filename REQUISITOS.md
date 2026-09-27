@@ -229,6 +229,15 @@ O `package.json` e o código do Next ficam na raiz do repositório. O front não
 - [x] `src/`, `public/` e a configuração do Next estão na raiz.
 - [x] Não há pasta `web` com o front.
 
+### 28. Foco ao apagar um dígito
+
+**Status:** implementado
+
+Apagar o número de uma caixa leva o foco para a caixa anterior, se ela existir. Na primeira caixa, o foco permanece nela.
+
+- [x] Apagar um dígito que não está na primeira caixa move o foco para a caixa anterior.
+- [x] Apagar o dígito da primeira caixa, ou apagar com ela vazia, mantém o foco nessa caixa.
+
 ---
 
 ## Fora desta imagem (backlog)

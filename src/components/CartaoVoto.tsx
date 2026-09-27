@@ -32,6 +32,7 @@ export function CartaoVoto({
   const consulta = useSearchParams().toString();
   const suffix = consulta ? `?${consulta}` : "";
   const [rascunho, setRascunho] = useState("");
+  const [posicao, setPosicao] = useState<number | null>(null);
   const [erro, setErro] = useState("");
   const [comentarioAberto, setComentarioAberto] = useState(false);
   const caixa = useRef<HTMLInputElement>(null);
@@ -41,6 +42,7 @@ export function CartaoVoto({
     if (candidato) {
       setRascunho("");
       setErro("");
+      setPosicao(null);
     }
   }, [candidato]);
 
@@ -70,21 +72,19 @@ export function CartaoVoto({
   }, [bloqueado, candidato, indice, onEscolher, rascunho, slot.cargo, slot.digits]);
 
   function aoDigitar(tecla: string) {
-    if (tecla === "Backspace" && candidato) {
-      repetirFoco.current = true;
-      setRascunho(candidato.numero.slice(0, -1));
+    repetirFoco.current = true;
+    if (tecla === "Backspace") {
+      const base = candidato ? candidato.numero : rascunho;
+      const restante = base.slice(0, -1);
+      setPosicao(Math.max(0, restante.length - 1));
+      setRascunho(restante);
       setErro("");
-      onLimpar();
+      if (candidato) onLimpar();
       return;
     }
     if (candidato) return;
-    repetirFoco.current = true;
-    if (tecla === "Backspace") {
-      setRascunho((atual) => atual.slice(0, -1));
-      setErro("");
-      return;
-    }
     if (/^\d$/.test(tecla) && rascunho.length < slot.digits) {
+      setPosicao(null);
       setRascunho((atual) => atual + tecla);
     }
   }
@@ -173,7 +173,7 @@ export function CartaoVoto({
               total={slot.digits}
               valor={rascunho}
               preenchido={false}
-              cursor={rascunho.length}
+              cursor={posicao ?? rascunho.length}
               rotulo={`Digite o número de ${slot.vazio.toLowerCase()}`}
               entrada={caixa}
               onTecla={aoDigitar}
