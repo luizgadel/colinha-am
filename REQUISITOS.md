@@ -210,6 +210,15 @@ Selecionar as caixas de número de um voto preenchido não abre a página do can
 - [x] Backspace apaga dígitos a partir do último.
 - [x] Com a entrada vazia, o teclado numérico preenche o número.
 
+### 26. Sombra amarela só na caixa ativa
+
+**Status:** implementado
+
+Ao selecionar o campo de número, a sombra amarela fica na caixa que vai receber o dígito, no lugar do grupo inteiro de caixas. Vale no lugar da sombra ao redor de todas as caixas da feature 18.
+
+- [x] Com o campo de número focado, só a caixa a preencher tem a sombra amarela.
+- [x] As outras caixas do mesmo número ficam sem essa sombra.
+
 ---
 
 ## Fora desta imagem (backlog)

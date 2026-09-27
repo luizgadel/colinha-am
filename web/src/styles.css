@@ -139,7 +139,7 @@ button, input, a { font: inherit; }
   border-radius: 14px;
 }
 
-.caixas:focus-within {
+.digito:focus-within {
   box-shadow: 0 0 0 4px #ffe14a, 0 0 16px 4px rgba(255, 196, 0, 0.7);
 }
 
