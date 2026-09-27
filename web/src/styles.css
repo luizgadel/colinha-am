@@ -80,6 +80,14 @@ button, input, a { font: inherit; }
 .escolha {
   color: inherit;
   text-decoration: none;
+  flex-wrap: wrap;
+}
+
+.escolha-urna {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: none;
 }
 
 .digitos {
@@ -141,7 +149,8 @@ button, input, a { font: inherit; }
 .identidade {
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  flex: 1 1 auto;
+  min-width: min(100%, max-content);
 }
 
 .identidade strong {

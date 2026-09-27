@@ -98,8 +98,10 @@ export function CartaoVoto({
             className="escolha"
             href={`/candidato/${candidato.sq}${suffix}`}
           >
-            <Digitos total={slot.digits} valor={candidato.numero} preenchido />
-            <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />
+            <span className="escolha-urna">
+              <Digitos total={slot.digits} valor={candidato.numero} preenchido />
+              <Avatar nome={candidato.nomeUrna} foto={candidato.foto} />
+            </span>
             <span className="identidade">
               <strong>{candidato.nomeUrna}</strong>
               <span>{candidato.sigla}</span>

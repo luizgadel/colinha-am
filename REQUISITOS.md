@@ -164,12 +164,12 @@ Com o ponteiro sobre **“comentar”** ou **“fechar”**, o texto fica sublin
 
 ### 21. Nome e partido descem quando não cabem
 
-**Status:** a implementar
+**Status:** implementado
 
 No card preenchido, nome e partido ficam à direita do número e da foto. Se esse bloco não couber na largura do card, ele desce para baixo da seção que exibe o número e a foto.
 
-- [ ] Quando há espaço, nome e partido continuam à direita do número e da foto.
-- [ ] Quando não há espaço, nome e partido passam para a linha de baixo.
+- [x] Quando há espaço, nome e partido continuam à direita do número e da foto.
+- [x] Quando não há espaço, nome e partido passam para a linha de baixo.
 
 ### 22. Foto alinhada ao topo
 
