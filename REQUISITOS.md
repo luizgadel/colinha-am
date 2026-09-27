@@ -1,6 +1,6 @@
 # Requisitos — colinha de votos AM 2026
 
-Site de referência para montar e compartilhar a colinha da eleição de 2026 no Amazonas: o eleitor escolhe os candidatos, vê os números no formato da urna e manda o recado para a família.
+Site de referência para montar e compartilhar a colinha da eleição de 2026 no Amazonas: o eleitor escolhe os candidatos, vê os números no formato da urna, anota um comentário em cada voto preenchido e manda o recado para a família.
 
 Referência visual da home: captura de [minhacolinha.com.br](https://minhacolinha.com.br) (seis votos na ordem da urna).
 
@@ -86,6 +86,18 @@ A urna não aceita celular na cabina. Exportar a colinha na ordem dos cards, com
 
 Só aceitar número que exista para aquele cargo/UF em 2026. Número incompleto continua em digitação; número inválido não “finge” candidato.
 
+### 13. Comentário sobre a escolha
+
+**Status:** implementado
+
+Depois que um dos seis votos está preenchido, o card ganha um campo de texto livre para o eleitor anotar o motivo daquela escolha. Card vazio não mostra o campo.
+
+- [x] Um comentário por slot (`df`, `de`, `s1`, `s2`, `gov`, `pr`), independente dos outros.
+- [x] **“limpar”** apaga o candidato e o comentário daquele voto.
+- [x] O texto vai na mesma URL da colinha (feature 10), em parâmetros próprios: `cdf`, `cde`, `cs1`, `cs2`, `cgov`, `cpr`. Comentário vazio omite o parâmetro.
+- [x] Cada texto cabe num parágrafo curto (até 200 caracteres), para o link continuar abrindo no WhatsApp.
+- [x] A versão papel (feature 11) imprime o comentário embaixo do candidato daquele cargo.
+
 ---
 
 ## Fora desta imagem (backlog)
@@ -96,3 +108,33 @@ Não aparecem na captura; ficam para depois, se quisermos ir além da colinha:
 - Emendas, CEAPS e voto parlamentar (só incumbentes)
 - Demais cargos/UFs além do recorte AM + presidente
 - 2º turno (governador/presidente) em 25/10, se houver
+
+---
+
+## Plano: reescrever o front em Next.js
+
+As features 1–13 permanecem. A troca é só da ferramenta que serve e empacota o React: Next.js no lugar de Vite e `react-router`. O app atual continua no Vite até este plano ser executado.
+
+Ficam como estão o script `scripts/build-candidatos.mjs`, o `web/public/data/candidatos.json` e os PDFs em `web/public/propostas`. Não há backend novo.
+
+### Forma alvo
+
+- Next.js com App Router e TypeScript, ainda dentro de `web/`.
+- `output: 'export'`, para o resultado continuar um site estático (GitHub Pages, Cloudflare Pages ou equivalente).
+- Rotas: `app/page.tsx` (home), `app/candidato/[sq]/page.tsx`, `app/imprimir/page.tsx`.
+- Cards, busca, dígitos, comentário e leitura da URL em componentes com `"use client"`.
+- `public/` segue servindo `/data/candidatos.json` e `/propostas/*.pdf`.
+- Se a publicação for em subcaminho (`/colinha-am` no GitHub Pages), configurar `basePath`. Na raiz de um domínio, `basePath` fica vazio.
+
+### Passos
+
+1. Trocar dependências em `web/package.json`: sair `vite`, `@vitejs/plugin-react` e `react-router-dom`; entrar `next`.
+2. Mover as páginas para `app/` e remover `main.tsx`, `index.html`, `vite.config.ts` e o `App.tsx` que hoje monta o `BrowserRouter`.
+3. Trocar `Link` e a leitura da query pelos equivalentes de `next/link` e `next/navigation`. Manter `df`, `de`, `s1`, `s2`, `gov`, `pr` e os parâmetros de comentário da feature 13.
+4. Continuar carregando `/data/candidatos.json` no cliente, para a colinha funcionar no export estático.
+5. Conferir no browser as features 1–13: seis cards, busca, senador repetido bloqueado, URL, impressão, PDF e comentário.
+6. Só então apontar `dev` e `build` para o Next e apagar a configuração do Vite.
+
+### Fora deste plano
+
+Não entra reescrita do script que monta os candidatos, nem troca para webpack, nem servidor próprio.
