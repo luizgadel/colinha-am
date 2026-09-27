@@ -1,6 +1,6 @@
 # Requisitos — colinha de votos AM 2026
 
-Site de referência para montar e compartilhar a colinha da eleição de 2026 no Amazonas: o eleitor escolhe os candidatos, vê os números no formato da urna, anota um comentário em cada voto preenchido e manda o recado para a família. O front é Next.js, exportado como site estático.
+Site de referência para montar e compartilhar a colinha da eleição de 2026 no Amazonas: o eleitor escolhe os candidatos, vê os números no formato da urna e a foto do candidato, anota um comentário em cada voto preenchido e manda o recado para a família. O front é Next.js, exportado como site estático.
 
 Referência visual da home: captura de [minhacolinha.com.br](https://minhacolinha.com.br) (seis votos na ordem da urna).
 
@@ -110,9 +110,12 @@ No card preenchido, o campo de texto não aparece sozinho. Há um controle **“
 
 ### 15. Fotos de deputado e senador
 
-**Status:** a implementar
+**Status:** implementado
 
 A foto de deputado federal, deputado estadual e senador precisa aparecer no card e na ficha, como já acontece com governador e presidente. Imagem que não carrega não pode ficar quebrada: nesse caso, mostrar as iniciais.
+
+- [x] Deputado federal, deputado estadual e senador mostram a foto no card e na ficha.
+- [x] Se a imagem não carrega, o lugar da foto mostra as iniciais.
 
 ### 16. Cursor na digitação do número
 
