@@ -89,9 +89,13 @@ export function CartaoVoto({
         return;
       }
       const restante = base.slice(0, -1);
-      const cursor = emCandidato ? base.length - 1 : (posicao ?? base.length);
-      const naCaixaVazia = cursor >= base.length;
-      setPosicao(naCaixaVazia ? restante.length : Math.max(0, restante.length - 1));
+      if (emCandidato) {
+        setPosicao(base.length - 1);
+      } else {
+        const cursor = posicao ?? base.length;
+        const naCaixaVazia = cursor >= base.length;
+        setPosicao(naCaixaVazia ? restante.length : Math.max(0, restante.length - 1));
+      }
       setRascunho(restante);
       setErro("");
       if (emCandidato) onLimpar();

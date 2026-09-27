@@ -265,6 +265,15 @@ Ao digitar um número, o foco vai para a próxima caixa. Na última caixa, o foc
 - [x] Digitar um dígito que não é o último move o foco para a caixa seguinte.
 - [x] Digitar o dígito da última caixa mantém o foco nessa caixa.
 
+### 32. Foco no último dígito ao apagar o candidato
+
+**Status:** implementado
+
+Com um candidato escolhido, apagar o último dígito mantém o foco nessa caixa. Cada Backspace seguinte leva o foco uma caixa para trás: penúltima, depois a anterior, e assim por diante.
+
+- [x] O primeiro Backspace num voto preenchido apaga o último dígito e mantém o foco nessa caixa.
+- [x] O Backspace seguinte leva o foco para a penúltima caixa, e cada um depois anda mais uma caixa para trás.
+
 ---
 
 ## Fora desta imagem (backlog)
