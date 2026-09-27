@@ -173,12 +173,12 @@ No card preenchido, nome e partido ficam à direita do número e da foto. Se ess
 
 ### 22. Foto alinhada ao topo
 
-**Status:** a implementar
+**Status:** implementado
 
 A foto do candidato fica centralizada na parte de cima, no card e na ficha. O rosto costuma estar mais alto na imagem, e o recorte precisa mostrar essa região.
 
-- [ ] No card, a foto mostra a parte de cima da imagem, centralizada na horizontal.
-- [ ] Na ficha, a foto mostra a parte de cima da imagem, centralizada na horizontal.
+- [x] No card, a foto mostra a parte de cima da imagem, centralizada na horizontal.
+- [x] Na ficha, a foto mostra a parte de cima da imagem, centralizada na horizontal.
 
 ### 23. Borda verde na foto
 
