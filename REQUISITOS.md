@@ -95,8 +95,36 @@ Depois que um dos seis votos está preenchido, o card ganha um campo de texto li
 - [x] Um comentário por slot (`df`, `de`, `s1`, `s2`, `gov`, `pr`), independente dos outros.
 - [x] **“limpar”** apaga o candidato e o comentário daquele voto.
 - [x] O texto vai na mesma URL da colinha (feature 10), em parâmetros próprios: `cdf`, `cde`, `cs1`, `cs2`, `cgov`, `cpr`. Comentário vazio omite o parâmetro.
-- [x] Cada texto cabe num parágrafo curto (até 200 caracteres), para o link continuar abrindo no WhatsApp.
+- [x] Cada texto cabe num parágrafo curto, para o link continuar abrindo no WhatsApp. O teto de 200 caracteres passa a ser 210 na feature 17.
 - [x] A versão papel (feature 11) imprime o comentário embaixo do candidato daquele cargo.
+
+### 14. Comentário sob demanda
+
+**Status:** implementado
+
+No card preenchido, o campo de texto não aparece sozinho. Há um controle **“comentar”**. O campo só abre depois do clique.
+
+- [x] Card vazio continua sem “comentar” e sem campo.
+- [x] Se o voto já tem comentário, o texto permanece visível e “comentar” abre o campo para editar.
+- [x] Fechar o campo não apaga o texto. **“limpar”** continua apagando voto e comentário.
+
+### 15. Fotos de deputado e senador
+
+**Status:** a implementar
+
+A foto de deputado federal, deputado estadual e senador precisa aparecer no card e na ficha, como já acontece com governador e presidente. Imagem que não carrega não pode ficar quebrada: nesse caso, mostrar as iniciais.
+
+### 16. Cursor na digitação do número
+
+**Status:** a implementar
+
+Ao clicar numa caixa de número ainda vazia, o cursor de texto fica visível nessa caixa, para indicar que a digitação vai acontecer ali.
+
+### 17. Limite do comentário em 210 caracteres
+
+**Status:** a implementar
+
+O campo de comentário aceita no máximo 210 caracteres. O que passar disso não entra no campo nem na URL. Vale no lugar do teto de 200 da feature 13.
 
 ---
 
