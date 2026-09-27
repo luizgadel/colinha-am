@@ -1,0 +1,15 @@
+node_modules/
+dist/
+repo/
+
+# Extraùùo bruta do TSE: contùm CPF, e-mail e tùtulo eleitoral.
+dados/tse/csv/
+
+# Respostas de acesso negado e arquivos soltos de exploraùùo.
+dados/tse/proposta_governo_2026_AM.zip
+dados/tse/eleicoes.json
+dados/tse/fotos/web.min.js
+scripts/inspect-comp.mjs
+scripts/inspect-csv.mjs
+scripts/list-github-files.mjs
+scripts/list-resources.mjs
