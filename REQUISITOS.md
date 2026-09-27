@@ -274,6 +274,16 @@ Com um candidato escolhido, apagar o último dígito mantém o foco nessa caixa.
 - [x] O primeiro Backspace num voto preenchido apaga o último dígito e mantém o foco nessa caixa.
 - [x] O Backspace seguinte leva o foco para a penúltima caixa, e cada um depois anda mais uma caixa para trás.
 
+### 33. Tema claro ou escuro do sistema
+
+**Status:** implementado
+
+A colinha acompanha o tema claro ou escuro do navegador ou do sistema de quem acessa o site. Não há um controle de tema na própria página.
+
+- [x] Com o navegador ou o sistema em tema escuro, o site aparece em tema escuro.
+- [x] Com o navegador ou o sistema em tema claro, o site aparece em tema claro.
+- [x] A troca de tema não depende de um botão no site.
+
 ---
 
 ## Fora desta imagem (backlog)
