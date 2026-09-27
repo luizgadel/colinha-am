@@ -258,12 +258,12 @@ Com o foco numa caixa vazia e pelo menos um número já digitado na mesma linha,
 
 ### 31. Foco na próxima caixa ao digitar
 
-**Status:** a implementar
+**Status:** implementado
 
 Ao digitar um número, o foco vai para a próxima caixa. Na última caixa, o foco permanece nela.
 
-- [ ] Digitar um dígito que não é o último move o foco para a caixa seguinte.
-- [ ] Digitar o dígito da última caixa mantém o foco nessa caixa.
+- [x] Digitar um dígito que não é o último move o foco para a caixa seguinte.
+- [x] Digitar o dígito da última caixa mantém o foco nessa caixa.
 
 ---
 

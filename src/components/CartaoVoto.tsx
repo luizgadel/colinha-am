@@ -57,6 +57,9 @@ export function CartaoVoto({
     const alvo = caixa.current;
     if (!alvo) return;
     alvo.focus();
+    const aguardandoCandidato =
+      rascunho.length === slot.digits && !candidato && !erro;
+    if (aguardandoCandidato) return;
     repetirFoco.current = false;
   });
 
@@ -96,8 +99,9 @@ export function CartaoVoto({
     }
     if (emCandidato) return;
     if (/^\d$/.test(tecla) && rascunho.length < slot.digits) {
-      setPosicao(null);
-      setRascunho((atual) => atual + tecla);
+      const proximo = rascunho + tecla;
+      setPosicao(proximo.length >= slot.digits ? slot.digits - 1 : proximo.length);
+      setRascunho(proximo);
     }
   }
 
