@@ -155,12 +155,12 @@ Com o ponteiro sobre **“limpar ×”**, a cor do texto passa a ser vermelha.
 
 ### 20. Hover de “comentar” e “fechar”
 
-**Status:** a implementar
+**Status:** implementado
 
 Com o ponteiro sobre **“comentar”** ou **“fechar”**, o texto fica sublinhado.
 
-- [ ] “comentar” ganha sublinhado no hover.
-- [ ] “fechar” ganha sublinhado no hover.
+- [x] “comentar” ganha sublinhado no hover.
+- [x] “fechar” ganha sublinhado no hover.
 
 ### 21. Nome e partido descem quando não cabem
 

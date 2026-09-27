@@ -210,6 +210,8 @@ button, input, a { font: inherit; }
   padding: 0;
 }
 
+.comentar:hover { text-decoration: underline; }
+
 .vazio { flex-wrap: wrap; }
 .vazio .buscar { white-space: nowrap; }
 
